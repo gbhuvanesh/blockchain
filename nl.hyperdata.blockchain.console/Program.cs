@@ -34,11 +34,12 @@ namespace nl.hyperdata.blockchain.console
                 /** output the generated block details **/
                 Console.WriteLine(chain.LastOrDefault().ToString());
 
-                    /** validate the chain (ie: is each block's hash valid and is the prevoius block has valid) **/
-                    Console.WriteLine(String.Format("Chain is valid {0}:", chain.IsValid()));
-                }
+                /** validate the chain (ie: is each block's hash valid and is the prevoius block has valid) **/
+                Console.WriteLine(String.Format("Chain is valid {0}:", chain.IsValid()));
+            }
 
-             }
+            Console.ReadLine();
         }
-  }
+    }
+}
 
