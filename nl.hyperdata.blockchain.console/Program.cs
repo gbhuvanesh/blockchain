@@ -38,6 +38,7 @@ namespace nl.hyperdata.blockchain.console
                 Console.WriteLine(String.Format("Chain is valid {0}:", chain.IsValid()));
             }
 
+            Console.WriteLine("Completed!!!");
             Console.ReadLine();
         }
     }
