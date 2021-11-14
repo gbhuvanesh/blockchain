@@ -31,12 +31,15 @@ namespace nl.hyperdata.blockchain
 
             byte[] hash = new byte[0];
             int d = difficulty.Length;
-
-            while (!hash.Take(d).SequenceEqual(difficulty) && block.Nonce <= int.MaxValue)
+            byte[] difficultyBGP = new byte[3] { 11,245,78};
+            d = 3;
+            Console.WriteLine($"Start: {DateTime.Now}");
+            while (!hash.Take(d).SequenceEqual(difficultyBGP) && block.Nonce <= int.MaxValue)
             {
                 block.Nonce++;
                 hash = block.GenerateHash();
             }
+            Console.WriteLine($"End: {DateTime.Now}");
             return hash;
         }
 
