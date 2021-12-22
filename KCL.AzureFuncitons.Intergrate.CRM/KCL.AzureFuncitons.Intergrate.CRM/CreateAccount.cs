@@ -24,9 +24,9 @@ namespace KCL.AzureFuncitons.Intergrate.CRM
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             //Build the connection string
-            var clientId = "";
-            var clientSecret = "";
-            var organizationUrl = "https://org.crm.dynamics.com/";
+            var clientId = "3fe639dd-9f2c-409b-823d-f5928b9b59a4";
+            var clientSecret = "h3V7Q~.lCtjofjufuEGk--0seSP14DUxAfF4c";
+            var organizationUrl = "https://bgprod.crm11.dynamics.com";
 
             string connectionString = "Url=" + organizationUrl + "; " +
                    "AuthType=ClientSecret; " +
@@ -41,7 +41,8 @@ namespace KCL.AzureFuncitons.Intergrate.CRM
                 throw new Exception("Authentication Failed!");
             }
 
-            string id = req.Query["Id"];
+            //string id = req.Query["Id"];
+            string id = "3bcfb4b4-4213-ec11-b6e5-002248412473";
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             id = id ?? data?.Id;
