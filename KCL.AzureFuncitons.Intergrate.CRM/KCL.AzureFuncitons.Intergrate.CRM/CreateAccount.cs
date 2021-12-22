@@ -13,10 +13,10 @@ using Microsoft.Xrm.Sdk;
 
 namespace KCL.AzureFuncitons.Intergrate.CRM
 {
-    internal class CreateAccount
+    internal class RetrieveAccount
     {
 
-        [FunctionName("Function1")]
+        [FunctionName("RetrieveAccount")]
         public static async Task<IActionResult> Run(
                   [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
                   ILogger log)
