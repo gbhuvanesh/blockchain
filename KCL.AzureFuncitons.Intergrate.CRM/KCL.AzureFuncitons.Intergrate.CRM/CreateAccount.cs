@@ -21,37 +21,48 @@ namespace KCL.AzureFuncitons.Intergrate.CRM
                   [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
                   ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-
-            //Build the connection string
-            var clientId = "3fe639dd-9f2c-409b-823d-f5928b9b59a4";
-            var clientSecret = "h3V7Q~.lCtjofjufuEGk--0seSP14DUxAfF4c";
-            var organizationUrl = "https://bgprod.crm11.dynamics.com";
-
-            string connectionString = "Url=" + organizationUrl + "; " +
-                   "AuthType=ClientSecret; " +
-                   "ClientId= " + clientId + "; " +
-                   "ClientSecret=" + clientSecret + "; " +
-                   "RequireNewInstance=false; " +
-                   "SkipDiscovery=true";
-
-            ServiceClient dataVerseConnection = new ServiceClient(connectionString);
-            if (!dataVerseConnection.IsReady)
+            try
             {
-                throw new Exception("Authentication Failed!");
+                log.LogInformation("C# HTTP trigger function processed a request.");
+
+                //throw new Exception("exception log test");
+
+                //Build the connection string
+                var clientId = "3fe639dd-9f2c-409b-823d-f5928b9b59a4";
+                var clientSecret = "h3V7Q~.lCtjofjufuEGk--0seSP14DUxAfF4c";
+                var organizationUrl = "https://bgprod.crm11.dynamics.com";
+
+                string connectionString = "Url=" + organizationUrl + "; " +
+                       "AuthType=ClientSecret; " +
+                       "ClientId= " + clientId + "; " +
+                       "ClientSecret=" + clientSecret + "; " +
+                       "RequireNewInstance=false; " +
+                       "SkipDiscovery=true";
+
+                ServiceClient dataVerseConnection = new ServiceClient(connectionString);
+                if (!dataVerseConnection.IsReady)
+                {
+                    throw new Exception("Authentication Failed!");
+                }
+
+                string id = req.Query["Id"];
+                //string id = "3bcfb4b4-4213-ec11-b6e5-002248412473";
+                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                dynamic data = JsonConvert.DeserializeObject(requestBody);
+                id = id ?? data?.Id;
+
+                string responseMessage = string.IsNullOrEmpty(id)
+                    ? "Pass an account id in the query string or in the request body for a personalized response."
+                    : $"Account Id, {id}. Account Name is " + GetAccountName(dataVerseConnection, id);
+
+                return new OkObjectResult(responseMessage);
+
             }
-
-            //string id = req.Query["Id"];
-            string id = "3bcfb4b4-4213-ec11-b6e5-002248412473";
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            id = id ?? data?.Id;
-
-            string responseMessage = string.IsNullOrEmpty(id)
-                ? "Pass an account id in the query string or in the request body for a personalized response."
-                : $"Account Id, {id}. Account Name is " + GetAccountName(dataVerseConnection, id);
-
-            return new OkObjectResult(responseMessage);
+            catch (Exception ex)
+            {
+                log.LogInformation(ex.Message);
+            }
+            return null;
         }
 
 
