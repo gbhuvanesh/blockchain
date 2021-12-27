@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCL.AzureFuncitons.Intergrate.CRM", "KCL.AzureFuncitons.Intergrate.CRM.csproj", "{720FBF7D-4AFC-4C84-8B77-80BBA56A6C1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvokeAzureFunction", "..\InvokeAzureFunction\InvokeAzureFunction.csproj", "{819936C4-008F-47DE-A5AE-6A36EDE92035}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{720FBF7D-4AFC-4C84-8B77-80BBA56A6C1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{720FBF7D-4AFC-4C84-8B77-80BBA56A6C1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{720FBF7D-4AFC-4C84-8B77-80BBA56A6C1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{819936C4-008F-47DE-A5AE-6A36EDE92035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{819936C4-008F-47DE-A5AE-6A36EDE92035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{819936C4-008F-47DE-A5AE-6A36EDE92035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{819936C4-008F-47DE-A5AE-6A36EDE92035}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
